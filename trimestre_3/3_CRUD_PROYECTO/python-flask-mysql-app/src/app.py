@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder = template_dir)
 @app.route('/')
 def home():
     cursor = db.database.cursor()
-    cursor.execute("SELECT * FROM users")
+    cursor.execute("SELECT * FROM cliente")
     myresult = cursor.fetchall()
     #Convertir los datos a diccionario
     insertObject = []
@@ -24,14 +24,15 @@ def home():
 #Ruta para guardar usuarios en la bdd
 @app.route('/user', methods=['POST'])
 def addUser():
-    username = request.form['username']
-    name = request.form['name']
-    password = request.form['password']
+    nombrecl = request.form['nombre_cliente']
+    direccioncl = request.form['direccion_cliente']
+    telefonocl = request.form['telefono_cliente']
+    correocl = request.form['correo_cliente']
 
-    if username and name and password:
+    if nombrecl and direccioncl and telefonocl and correocl:
         cursor = db.database.cursor()
-        sql = "INSERT INTO users (username, name, password) VALUES (%s, %s, %s)"
-        data = (username, name, password)
+        sql = "INSERT INTO cliente (nombre_cliente, direccion_cliente, telefono_cliente, correo_cliente) VALUES (%s, %s, %s, %s)"
+        data = (nombrecl, direccioncl, telefonocl, correocl)
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))
@@ -39,7 +40,7 @@ def addUser():
 @app.route('/delete/<string:id>')
 def delete(id):
     cursor = db.database.cursor()
-    sql = "DELETE FROM users WHERE id=%s"
+    sql = "DELETE FROM cliente WHERE id=%s"
     data = (id,)
     cursor.execute(sql, data)
     db.database.commit()
@@ -47,14 +48,15 @@ def delete(id):
 
 @app.route('/edit/<string:id>', methods=['POST'])
 def edit(id):
-    username = request.form['username']
-    name = request.form['name']
-    password = request.form['password']
+    nombrecl = request.form['nombre_cliente']
+    direccioncl = request.form['direccion_cliente']
+    telefonocl = request.form['telefono_cliente']
+    correocl = request.form['correo_cliente']
 
-    if username and name and password:
+    if nombrecl and direccioncl and telefonocl and correocl:
         cursor = db.database.cursor()
-        sql = "UPDATE users SET username = %s, name = %s, password = %s WHERE id = %s"
-        data = (username, name, password, id)
+        sql = "UPDATE cliente SET nombre_cliente= %s, direccion_cliente %s, telefono_cliente %s, correo_cliente %s WHERE id= %s"
+        data = (nombrecl, direccioncl, telefonocl, correocl, id)
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))
