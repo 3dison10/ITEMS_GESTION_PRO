@@ -1,0 +1,70 @@
+{% extends "plantilla.html" %}
+
+{% block titulo %} Productos {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        <a
+            name=""
+            id=""
+            class="btn btn-primary"
+            href="{% url 'crearProd' %}"
+            role="button"
+            >Agregar Producto</a
+        >
+        
+    <div class="card-body">
+        <h4 class="card-title">Productos</h4>
+       
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Descripcion Producto</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Foto de Referencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for producto in productos %}
+
+                        <tr class="">
+                            <td scope="row">{{producto.id}}</td>
+                            <td>{{producto.modeloProd}}</td>
+                            <td>{{producto.nombreProd}}</td>
+                            <td>{{producto.marcaProd}}</td>
+                            <td><img src="{{ producto.fotoProd.url }}" alt="Foto_producto" width="100px"></td>
+                            <td> 
+                                <a
+                                name=""
+                                id=""
+                                class="btn btn-info"
+                                href="{% url 'editarProd' producto.id %}"
+                                role="button"
+                                >Editar</a>
+                            
+                                <a
+                                name=""
+                                id=""
+                                class="btn btn-info"
+                                href="{% url 'borrarProd' producto.id %}"
+                                role="button"
+                                >Borrar</a>
+                    
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+</div>
+
+
+{% endblock %}

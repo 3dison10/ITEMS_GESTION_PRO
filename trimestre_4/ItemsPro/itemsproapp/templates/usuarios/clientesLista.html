@@ -10,7 +10,7 @@
                 name=""
                 id=""
                 class="btn btn-primary"
-                href="{% url 'crear' %}"
+                href="{% url 'crear_cliente' %}"
                 role="button"
                 >Agregar Cliente</a
             >
@@ -52,7 +52,7 @@
                                         name=""
                                         id=""
                                         class="btn btn-secondary"
-                                        href="{% url 'editar' cliente.id %}"
+                                        href="{% url 'editar_usuario' cliente.id %}"
                                         role="button"
                                         >Editar</a
                                     >
@@ -61,7 +61,7 @@
                                         name=""
                                         id=""
                                         class="btn btn-dark sombra-boton"
-                                        href="{% url 'borrar' cliente.id %}"
+                                        href="{% url 'borrar_usuario' cliente.id %}"
                                         role="button"   
                                         >Borrar</a
                                     >

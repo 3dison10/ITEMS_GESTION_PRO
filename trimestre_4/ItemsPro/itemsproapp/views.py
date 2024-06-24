@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import cliente
+from .models.cliente import cliente
+from .models.producto import producto
 from .forms import clienteForm
+from .forms import productoForm
 
 # Create your views here.
 
@@ -23,7 +25,9 @@ def crear(request):
     return render(request, 'usuarios/crearCliente.html', { 'formulario':formulario} )
 
 def productos(request):
-    return render(request, 'usuarios/productos.html')
+    productos = producto.objects.all()
+    print(productos)
+    return render(request, 'productos/indexProd.html', {'productos':productos})
 
 def editar(request, id):
     clienteEditado = cliente.objects.get(id=id)
@@ -39,4 +43,25 @@ def borrar(request, id):
     clienteBorrado = cliente.objects.get(id=id)
     clienteBorrado.delete()
     return redirect('usuarios')
+
+def crearProd (request):
+    formulario = productoForm(request.POST or None, request.FILES or None)
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('productos')
+    return render(request, 'productos/crearProd.html', { 'formulario':formulario})
+
+def editarProd (request, id):
+    productoEditado = producto.objects.get(id=id)
+    formulario = productoForm(request.POST or None, request.FILES or None, instance=productoEditado)
+    if formulario.is_valid() and request.POST:
+        formulario.save()
+        return redirect('productos')
+    
+    return render(request, 'productos/editarProd.html',{ 'formulario':formulario})
+
+def borrarProd(request, id):
+    prodBorrado = cliente.objects.get(id=id)
+    prodBorrado.delete()
+    return redirect('productos')
 
