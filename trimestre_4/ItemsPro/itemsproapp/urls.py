@@ -15,6 +15,6 @@ urlpatterns = [
     path('productos/crearProd/', views.crearProd, name='crearProd'),  # Asegúrate de que esta línea esté correcta
     path('productos/editarProd/<int:idProd>/', views.editarProd, name='editarProd'),
     path('productos/borrarProd/<int:idProd>/', views.borrarProd, name='borrarProd'),
-    path('register/', views.register, name='register'),
+    path('registroClt/crearReg/', views.formClt, name='crearReg'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

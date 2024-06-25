@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models.cliente import cliente
 from .models.producto import producto
-from .forms import clienteForm, productoForm
-from django.contrib.auth.forms import UserCreationForm
+from .models.registro import registro  # Asegúrate de importar tu modelo Registro
+from .forms import clienteForm, productoForm, UsuarioForm
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
 # Create your views here.
@@ -52,7 +53,7 @@ def crearProd (request):
         return redirect('productos')
     return render(request, 'productos/crearProd.html', { 'formProd':prodForm})
 
-def editarProd (request, idProd):
+def editarProd(request, idProd):
     productoEditado = producto.objects.get(idProd=idProd)
     prodForm = productoForm(request.POST or None, request.FILES or None, instance=productoEditado)
     if prodForm.is_valid() and request.POST:
@@ -66,15 +67,10 @@ def borrarProd(request, idProd):
     prodBorrado.delete()
     return redirect('productos')
 
-def register(request):
-	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			username = form.cleaned_data['username']
-			messages.success(request, f'Usuario {username} creado')
-	else:
-		form = UserCreationForm()
-
-	context = { 'form' : form }
-	return render(request, 'usuarios/register.html', context)   
+def formClt(request):
+    cltForm = UsuarioForm(request.POST or None, request.FILES or None)
+    if cltForm.is_valid():
+        cltForm.save()
+        return redirect('registroClt')
+    return render(request, 'registroClt/crearReg.html', {'formReg': cltForm})  
 

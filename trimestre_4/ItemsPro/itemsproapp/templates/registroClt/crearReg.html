@@ -1,0 +1,17 @@
+{% extends "plantilla.html" %}
+
+{% block titulo %} Petición Usuario {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">Formulario de Creacion</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Cliente</h4>
+       {% include "registroClt/formReg.html" %}
+    </div>
+    <div class="card-footer text-muted">© 2024 - Creado por: Proyecto Área 51 - All Rights Reserved</div>
+</div>
+
+
+{% endblock %}
