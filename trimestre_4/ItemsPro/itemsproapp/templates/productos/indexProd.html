@@ -14,19 +14,21 @@
             role="button"
             >Agregar Producto</a
         >
-        
+    </div>
+
     <div class="card-body">
         <h4 class="card-title">Productos</h4>
        
         <div class="table-responsive">
-            <table class="table table-primary">
+            <table class="table table-secondary text-center align-middle">
                 <thead>
                     <tr>
                         <th scope="col">idProd</th>
                         <th scope="col">Descripcion Producto</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Foto de Referencia</th>
-                        <th scope="col">Marca</th>                       
+                        <th scope="col">Marca</th>
+                        <th scope="col">Acciones</th>                       
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +39,9 @@
                             <td scope="row">{{producto.idProd}}</td>
                             <td>{{producto.nombreProd}}</td>
                             <td>{{producto.marcaProd}}</td>
-                            <td><img src="{{ producto.fotoProd.url }}" alt="Foto_producto" width="100px"></td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <img src="{{ producto.fotoProd.url }}" alt="Foto_producto" width="100px">
+                            </td>
                             <td>{{producto.modeloProd}}</td>
                             <td> 
                                 <a
