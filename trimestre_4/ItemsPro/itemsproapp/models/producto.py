@@ -4,18 +4,19 @@ import logging
 logger = logging.getLogger(__name__)
 
 class producto(models.Model):
-    id = models.AutoField(primary_key=True)
-    modeloProd = models.CharField(max_length=50, verbose_name="Modelo del Producto", default='')
+    idProd = models.AutoField(primary_key=True)
     nombreProd = models.CharField(max_length=20, verbose_name="Descripcion del Producto")
+    modeloProd = models.CharField(max_length=50, verbose_name="Modelo del Producto", default='')
+    fotoProd = models.ImageField(upload_to='img/', verbose_name="Foto Producto", null=True)
     marcaProd = models.CharField(max_length=80, verbose_name="Marca Camara") 
-    fotoProd = models.ImageField(upload_to='img/', verbose_name="Foto Producto", null=True) 
+     
     
     def __str__(self):
         return f"{self.nombreProd} - {self.marcaProd}"
     
     def delete(self, *args, **kwargs):
         try:
-            logger.info(f"Deleting Producto: {self.id} - {self.nombreProd}")
+            logger.info(f"Deleting Producto: {self.idProd} - {self.nombreProd}")
             super().delete(*args, **kwargs)
         except Exception as e:
-            logger.error(f"Error deleting Producto {self.id}: {str(e)}")
+            logger.error(f"Error deleting Producto {self.idProd}: {str(e)}")

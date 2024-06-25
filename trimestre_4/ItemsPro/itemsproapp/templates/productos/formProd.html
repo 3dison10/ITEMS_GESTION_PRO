@@ -1,6 +1,6 @@
 <form envtype="multipart/form-data" method="post">
     {% csrf_token %}
-    {% for campo in formulario %}   
+    {% for campo in prodForm %}   
 
         <div class="mb-3">
             <label for="" class="form-label">{{ campo.label }}</label>

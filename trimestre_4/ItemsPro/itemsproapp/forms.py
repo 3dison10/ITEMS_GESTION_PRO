@@ -9,5 +9,5 @@ class clienteForm(forms.ModelForm):
         
 class productoForm(forms.ModelForm):
     class Meta:
-        model = cliente
+        model = producto
         fields = '__all__'

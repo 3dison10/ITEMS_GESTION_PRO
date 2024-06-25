@@ -22,11 +22,11 @@
             <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Modelo</th>
+                        <th scope="col">idProd</th>
                         <th scope="col">Descripcion Producto</th>
-                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
                         <th scope="col">Foto de Referencia</th>
+                        <th scope="col">Marca</th>                       
                     </tr>
                 </thead>
                 <tbody>
@@ -34,17 +34,17 @@
                     {% for producto in productos %}
 
                         <tr class="">
-                            <td scope="row">{{producto.id}}</td>
-                            <td>{{producto.modeloProd}}</td>
+                            <td scope="row">{{producto.idProd}}</td>
                             <td>{{producto.nombreProd}}</td>
                             <td>{{producto.marcaProd}}</td>
                             <td><img src="{{ producto.fotoProd.url }}" alt="Foto_producto" width="100px"></td>
+                            <td>{{producto.modeloProd}}</td>
                             <td> 
                                 <a
                                 name=""
                                 id=""
                                 class="btn btn-info"
-                                href="{% url 'editarProd' producto.id %}"
+                                href="{% url 'editarProd' producto.idProd %}"
                                 role="button"
                                 >Editar</a>
                             
@@ -52,11 +52,9 @@
                                 name=""
                                 id=""
                                 class="btn btn-info"
-                                href="{% url 'borrarProd' producto.id %}"
+                                href="{% url 'borrarProd' producto.idProd %}"
                                 role="button"
-                                >Borrar</a>
-                    
-                            </td>
+                                >Borrar</a></td>
                         </tr>
                     {% endfor %}
                     </tr>
