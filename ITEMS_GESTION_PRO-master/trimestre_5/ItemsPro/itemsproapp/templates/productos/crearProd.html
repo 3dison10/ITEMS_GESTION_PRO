@@ -1,0 +1,19 @@
+{% extends "plantilla.html" %}
+
+{% block titulo %} Crear Productos {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">Añadir Producto</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de los productos</h4>
+    
+        {%include "productos/formProd.html"%}
+        
+    </div>
+    <div class="card-footer text-muted">Datos para crear productos</div>
+</div>
+
+
+{% endblock %}

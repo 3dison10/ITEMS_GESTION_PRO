@@ -1,0 +1,42 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for campo in formProd %}
+       <div class="mb-3">
+            <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}</label>
+            
+            {% if campo.field.widget.input_type == 'file' and campo.value %}
+                <br>
+                <img src="{{ campo.value.url }}" alt="Imagen de {{ campo.label }}" width="80">
+            {% endif %}
+            
+            {% if campo.field.widget.input_type != 'hidden' %}
+                <input
+                    type="{{ campo.field.widget.input_type }}"
+                    class="form-control"
+                    name="{{ campo.name }}"
+                    id="{{ campo.id_for_label }}"
+                    aria-describedby="helpId"
+                    placeholder="Escriba aquí la información"
+                    value="{{ campo.value|default:'' }}"
+                />
+            {% endif %}
+        </div>   
+    {% endfor %}
+
+    <input
+        name=""
+        id=""
+        class="btn btn-success"
+        type="submit"
+        value="Enviar información"
+    />
+
+    <a
+        name=""
+        id=""
+        class="btn btn-primary"
+        href="{% url 'productos' %}"
+        role="button"
+        >Cancelar</a
+    >
+</form>
